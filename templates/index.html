@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+    {% block body %}
+    {% load static %}
+
+    <div class="content margin-width1 mar-auto my-1">
+        <div class="content-left">
+            <h1> Hey food lovers!</h1>
+            <p1>Welcome to the food life! This blog is one stop station for food</p1>
+            <p1>
+                The <label> tag is used to specify a label for an input element of a form.<br> It adds a label to a form
+                    control such as text, email, password, textarea etc. It toggles the control when a user clicks on a
+                    text within the <label> element.
+            </p1>
+
+        </div>
+        <div class="content-right">
+            <img src="{% static 'images/cover blg1.jpg' %}" alter='none'>
+        </div>
+    </div>
+    <div class="margin-width1 mar-auto">
+        <hr>
+    </div>
+
+    <!---------------------------------------- Main section ------------------------------------------------------>
+
+    <div class="editor-content">
+        <div class="editor-pick">
+            <div class="card">
+                <div class="card-image">
+
+                </div>
+                <div class="card-text">
+                    <span class=date>4 days ago</span>
+                    <h2>Post One</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam blanditiis cumque sunt voluptates
+                        adipisci, exercitationem suscipit! Sint iure placeat consequatur!</p>
+                </div>
+                <div class="card-stats">
+                    <div class="stats-content">
+                        <div class="stat-value">
+                            Editor's Pick
+                        </div>
+
+                    </div>
+                    <div class="stats-content">
+                        <div class="stat-editorname">
+                           8 mins read | By:Bikramjit Das
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="popular-picks">
+                <h2>Most Popular</h2>
+            </div>
+            <ul>
+                <li>
+                    <div class="top-picks">
+                        <h2>01</h2>
+                    </div>
+                    <div class="pick-details">
+                        <h3>Why avoid eating junk foods?</h3>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat, cupiditate nostrum?
+                            Explicabo non facilis debitis. In impedit expedita provident dolorem?
+                        </p>
+                        <a href="#">View Post</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="top-picks">
+                        <h2>01</h2>
+                    </div>
+                    <div class="pick-details">
+                        <h3>Why avoid eating junk foods?</h3>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat, cupiditate nostrum?
+                            Explicabo non facilis debitis. In impedit expedita provident dolorem?
+                        </p>
+                        <a href="#">View Post</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="top-picks">
+                        <h2>01</h2>
+                    </div>
+                    <div class="pick-details">
+                        <h3>Why avoid eating junk foods?</h3>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat, cupiditate nostrum?
+                            Explicabo non facilis debitis. In impedit expedita provident dolorem?
+                        </p>
+                        <a href="#">View Post</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="mainsection mar-auto margin-width1 font-1">
+        <h2>Khana Taiyaar Hai</h2>
+        <div class="year-box">
+            <h3>Year</h3>
+            <div>
+                <input type="radio" name="year">2020
+            </div>
+            <div>
+                <input type="radio" name="year">2021
+            </div>
+        </div>
+        {% for trend in trends %}
+        <div class="mainsection-articles">
+
+            <div class="mainsection-articles-images">
+                <img src="{{trend.thumbnail.url}}" alt="" style="width: 235px;">
+            </div>
+            <div class="mainsection-articles-content">
+                <a href="../page1.html">
+                    <h3> {{trend.title}}</h3>
+                </a>
+                <span>Author:{{trend.author}}|</span>
+                  <p>{{trend.overview}}</p>
+                <span>Date:{{trend.time_upload}} </span><br>
+                <a href="../blogpost.html">Read more...</a>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+    <div class="margin-width1 mar-auto"><hr><h3>Check Out!</h3></div>
+    <div class="slider-width" style="background-color: black">
+        <div class="card-carousel margin-width1 mar-auto my-1">
+
+            <div class="row slider">
+                {% for post in posts|slice:"5" %}
+                <div class="col-md-12">
+
+                    <div class="details">
+                        <div class="img">  <img src="{{post.thumbnail.url}}"></div>
+                        <h3>{{post.title}}</h3>
+                        <p>{{post.overview}}</p>
+                        <a href="#">Read More..</a>
+                        <h6> By : {{post.author.user.username}}  </h6>
+                        <p>{{post.time_upload}}</p><br>
+                        <h6>{{post.mins_read}} mins read</h6>
+                        <span>
+                            {% for cat in post.categories.all %}
+                            <a href="#">{{cat.title}}</a>
+                            {% endfor %}
+                        </span>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endblock body %}
